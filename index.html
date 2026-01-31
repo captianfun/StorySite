@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StorySite | Pirates: A Space Kids Novel</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Inter:wght@400;500;600&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        .serif { font-family: 'Crimson Pro', serif; }
+        
+        .chapter-card:hover { transform: translateY(-4px); }
+        
+        /* Smooth transitions */
+        .page-transition { 
+            transition: opacity 0.3s ease-in-out; 
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Reader text styling */
+        .story-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 1.125rem;
+        }
+
+        .hidden { display: none; }
+    </style>
+</head>
+<body class="bg-white text-slate-900">
+
+    <!-- Simplified Navigation -->
+    <nav class="sticky top-0 z-50 bg-white border-b border-lime-100 shadow-sm">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-center items-center">
+            <h1 class="text-3xl font-bold serif text-lime-800 tracking-tight cursor-pointer" onclick="showHub()">StorySite</h1>
+        </div>
+    </nav>
+
+    <!-- MAIN HUB VIEW -->
+    <main id="hub-view" class="page-transition">
+        <!-- Hero Section -->
+        <header class="py-24 px-6 text-center bg-gradient-to-b from-lime-50 to-white">
+            <div class="max-w-3xl mx-auto">
+                <span class="text-lime-700 font-bold tracking-widest uppercase text-xs">Welcome!</span>
+                <h2 class="text-5xl md:text-6xl font-bold serif mt-4 mb-6 leading-tight">Every page is a new adventure.</h2>
+                <p class="text-lg text-slate-600 mb-10">Dive into a world of imagination with our latest chapters.</p>
+                <a href="#stories" class="bg-lime-800 text-white px-10 py-4 rounded-xl font-bold text-lg shadow-xl hover:bg-lime-900 transition">Start Reading</a>
+            </div>
+        </header>
+
+        <!-- Stories Grid -->
+        <section id="stories" class="max-w-6xl mx-auto px-6 py-20">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h3 class="text-3xl font-bold serif mb-2 text-lime-900">Latest Chapters</h3>
+                    <p class="text-slate-500">New updates weekly</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+               <div class="chapter-card bg-white p-6 rounded-2xl shadow-md border border-lime-100 transition-all flex flex-col">
+                    <span class="text-lime-700 text-xs font-bold uppercase mb-2">Adventure</span>
+                    <h4 class="text-xl font-bold mb-3">Pirates: a Space Kids novel</h4>
+                    <p class="text-slate-600 text-sm mb-6 flex-grow">Meet Mark and June, the first kids in space. NASA recruited them to live on a new planet they had discovered, but things change when space pirates invade the ship.</p>
+                    <button onclick="showStory()" class="w-full bg-lime-50 py-3 rounded-lg font-bold text-lime-800 hover:bg-lime-800 hover:text-white transition">Read Now</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community & Comments -->
+        <section id="community" class="max-w-4xl mx-auto px-6 py-20">
+            <h3 class="text-3xl font-bold serif text-center mb-12 text-lime-900">Reader Community</h3>
+            
+            <div class="bg-white rounded-3xl shadow-lg border border-lime-100 overflow-hidden">
+                <div class="p-8 border-b border-lime-50 bg-lime-50/30">
+                    <h4 class="font-bold text-lg mb-4 text-lime-900">Write a Review</h4>
+                    <textarea id="review-input" class="w-full bg-white border border-lime-200 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-lime-500 transition" rows="3" placeholder="What did you think of the latest chapter?"></textarea>
+                    <div class="flex justify-end mt-4">
+                        <button onclick="postReview()" class="bg-lime-800 text-white px-8 py-2 rounded-lg font-bold hover:bg-lime-900 transition shadow-md">Post Review</button>
+                    </div>
+                </div>
+
+                <div id="comments-list" class="p-8 space-y-6">
+                    <p id="empty-msg" class="text-center text-slate-400 italic">No reviews yet. Be the first to share your thoughts!</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- STORY READER VIEW (Hidden by default) -->
+    <main id="reader-view" class="hidden page-transition">
+        <div class="max-w-3xl mx-auto px-6 py-12">
+            <button onclick="showHub()" class="flex items-center text-lime-700 font-bold mb-8 hover:text-lime-900 transition">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                Back to Home
+            </button>
+
+            <article class="serif">
+                <header class="mb-12 border-b border-lime-100 pb-8">
+                    <span class="text-lime-600 font-bold tracking-widest uppercase text-sm">Chapter One</span>
+                    <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mt-2 mb-4">Assembly</h1>
+                    <p class="text-slate-500 italic">By Oz Lavenski</p>
+                </header>
+
+                <div class="story-content text-slate-800">
+                    <p><strong>This was a big day, the last day before summer break.</strong> I was sweating, sitting in a small plastic chair that could fry an egg. It was almost thirty-five celsius.</p>
+                    <p>My name's Mark Brodowski. I go to fourth grade at Croman elementary school, which sadly, had no air conditioning. That's why I was so tired.</p>
+                    <p>My friend June was sitting beside me, watching the whiteboard intently. In my depression, I hadn't bothered to look at it. But what I saw was gold.</p>
+                    <p>On the whiteboard, in cursive, was a message that said 'NASA visit today'.</p>
+                    <p>I'm a space geek. I saw documentaries, movies, and pretty much anything that had to do with space. Interstellar technology was fire in the twenty-third century.</p>
+                    <p>Two men walked in. They had tags that had their jobs written on them, both with 'engineer' in bold letters.</p>
+                    <p>"Hello," said the man on the right. "Before we start, I'd like to announce that the raffle winners for the space collection raffle have been chosen for a special NASA program. The winners are: Mark Brodowski and June Hemphill!"</p>
+                </div>
+
+                <footer class="mt-16 pt-8 border-t border-lime-100 text-center">
+                    <p class="text-slate-400 italic">To be continued...</p>
+                    <button onclick="showHub()" class="mt-6 bg-lime-800 text-white px-8 py-3 rounded-xl font-bold hover:bg-lime-900 transition shadow-lg">Back to Hub</button>
+                </footer>
+            </article>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-lime-900 text-white py-12 px-6">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <h1 class="text-2xl font-bold serif text-lime-100">StorySite</h1>
+            <p class="text-lime-200 text-sm">© 2026 StorySite. Created for great storytellers.</p>
+            <div class="flex space-x-6 text-lime-300">
+                <a href="#" class="hover:text-white">Privacy</a>
+                <a href="#" class="hover:text-white">Contact</a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // NAVIGATION LOGIC
+        function showStory() {
+            window.scrollTo(0, 0);
+            document.getElementById('hub-view').classList.add('hidden');
+            document.getElementById('reader-view').classList.remove('hidden');
+        }
+
+        function showHub() {
+            window.scrollTo(0, 0);
+            document.getElementById('reader-view').classList.add('hidden');
+            document.getElementById('hub-view').classList.remove('hidden');
+        }
+
+        // REVIEW LOGIC
+        function postReview() {
+            const input = document.getElementById('review-input');
+            const list = document.getElementById('comments-list');
+            const emptyMsg = document.getElementById('empty-msg');
+            
+            if (input.value.trim() === "") return;
+
+            if (emptyMsg) emptyMsg.remove();
+
+            const commentDiv = document.createElement('div');
+            commentDiv.className = "flex gap-4 animate-in fade-in slide-in-from-bottom-2 duration-500 border-b border-lime-50 pb-6 last:border-0";
+            
+            commentDiv.innerHTML = `
+                <div class="w-12 h-12 bg-lime-100 rounded-full flex items-center justify-center text-lime-700 font-bold shrink-0">ME</div>
+                <div class="flex-1">
+                    <div class="flex items-center gap-2 mb-1">
+                        <p class="font-bold text-slate-800">New Reader</p>
+                        <span class="text-xs text-slate-400">Just now</span>
+                    </div>
+                    <p class="text-slate-600 leading-relaxed">${input.value.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</p>
+                </div>
+            `;
+
+            list.prepend(commentDiv);
+            input.value = "";
+        }
+    </script>
+
+    </body>
+    </html>
